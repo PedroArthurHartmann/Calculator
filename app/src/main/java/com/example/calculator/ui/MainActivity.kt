@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupBtns()
 
-        binding.btCLR.setOnClickListener {
+        binding.btClr.setOnClickListener {
             binding.tvResult.text = ""
         }
 

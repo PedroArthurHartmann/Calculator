@@ -136,7 +136,7 @@
             android:layout_weight="1"
             android:layout_marginHorizontal="3dp"
             android:text="CLR"
-            android:id="@+id/bt_CLR" />
+            android:id="@+id/bt_clr" />
 
         <Button
             android:layout_width="wrap_content"
