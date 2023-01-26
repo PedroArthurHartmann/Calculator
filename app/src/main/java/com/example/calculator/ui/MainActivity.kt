@@ -3,11 +3,8 @@ package com.example.calculator.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.core.view.allViews
-import com.example.calculator.R
 import com.example.calculator.databinding.ActivityMainBinding
-import java.sql.Time
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupBtns()
+        setupButtons()
 
         binding.btClr.setOnClickListener {
             binding.tvResult.text = ""
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupBtns() {
+    private fun setupButtons() {
         binding.root.allViews.toList().forEach {
             it.setOnClickListener { view ->
                 binding.tvResult.append((view as Button).text)
@@ -37,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculate(result: String): Double {
-        var op: Char = 'e'
-        var posOfOp = 0
+        var operation = 'e'
+        var positionOfOperation = 0
 
         result.forEachIndexed { index, num ->
             if (num == '+' ||
@@ -46,22 +43,22 @@ class MainActivity : AppCompatActivity() {
                 num == '*' ||
                 num == '/'
             ) {
-                posOfOp = index
-                op = num
+                positionOfOperation = index
+                operation = num
             }
         }
 
-        val firstNum = result.substring(0, posOfOp).toDouble()
-        val scndNum = result.substring(posOfOp + 1).toDouble()
+        val firstNumber = result.substring(0, positionOfOperation).toDouble()
+        val secondNumber = result.substring(positionOfOperation + 1).toDouble()
 
-        if (op == '/' && scndNum == 0.0)
+        if (operation == '/' && secondNumber == 0.0)
             return 0.0
 
-        when (op) {
-            '+' -> return firstNum + scndNum
-            '-' -> return firstNum - scndNum
-            '*' -> return firstNum * scndNum
-            '/' -> return firstNum / scndNum
+        when (operation) {
+            '+' -> return firstNumber + secondNumber
+            '-' -> return firstNumber - secondNumber
+            '*' -> return firstNumber * secondNumber
+            '/' -> return firstNumber / secondNumber
             else -> return result.toDouble()
         }
     }
